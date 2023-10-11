@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:zoom_clone/screens/login_screen.dart';
+import 'package:zoom_clone/utils/colors.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,16 +9,18 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+      debugShowCheckedModeBanner: false,
+      title: 'Zoom Clone',
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: backgroundColor,
       ),
-      home: const Text('Hello, Let\'s Start the Project'),
+      routes: {
+        '/login': (context) => const LoginScreen(),
+      },
+      home: const LoginScreen(),
     );
   }
 }
