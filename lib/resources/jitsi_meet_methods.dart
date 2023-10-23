@@ -8,6 +8,7 @@ class JitsiMeetMethods {
     required String roomName,
     required bool isAudioMuted,
     required bool isVideoMuted,
+    String username = '',
   }) async {
     try {
       // FeatureFlag featureFlag = FeatureFlag();
@@ -17,11 +18,18 @@ class JitsiMeetMethods {
       // String? serverUrl =
       //     serverText.text.trim().isEmpty ? null : serverText.text;
 
-      Map<String, Object> featureFlags = {};
+      // Map<String, Object> featureFlags = {};
+
+      String name;
+      if (username.isEmpty) {
+        name = _authMethods.user.displayName!;
+      } else {
+        name = username;
+      }
 
       var options = JitsiMeetingOptions(
         roomNameOrUrl: roomName,
-        userDisplayName: _authMethods.user.displayName,
+        userDisplayName: name,
         userEmail: _authMethods.user.email,
         userAvatarUrl: _authMethods.user.photoURL,
         isAudioMuted: isAudioMuted,
